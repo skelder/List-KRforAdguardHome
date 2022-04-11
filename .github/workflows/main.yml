@@ -39,4 +39,4 @@ jobs:
           path: original/filter.txt
           
       - name: Process the list of files to access
-        run: grep -e 'include' original/filter.txt | sed -n -e 's/^.*include/original\// //p'
+        run: grep -e 'include' original/filter.txt | sed -e 's/^.*include/original\/'
