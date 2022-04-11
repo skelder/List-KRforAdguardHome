@@ -35,8 +35,13 @@ jobs:
         run: grep -e 'include' original/filter.txt | sed -e 's/^.*include /original\//' > filelocations.txt
         
       - name: Compile the contents of all files into one
-        run: while read file; do cat "$file" >> compiled.txt; done < filelocations.txt
+        run: while read file; do cat "$file" >> destination/full_compilation.txt; done < filelocations.txt
       
-      - name: Print out compiled.txt
-        run: cat compiled.txt
-      
+      - name: Save changes
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+          git add destination/full_compilation.txt
+          git commit -m "updated compilation"
+          git push origin master
+    
