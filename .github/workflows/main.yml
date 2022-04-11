@@ -21,13 +21,16 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
+        with: 
+          repository: 'List-KR/List-KR'
+          path: original
       
       - name: Read file
         id: firstfile
         uses: juliangruber/read-file-action@v1.1.4
         with:
          # File path
-          path: https://github.com/List-KR/List-KR/blob/master/filters-share/adserver.txt
+          path: original/filters-share/adserver.txt
           #trim: # optional
 
       # Runs a single command using the runners shell
