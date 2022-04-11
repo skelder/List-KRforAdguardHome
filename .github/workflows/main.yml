@@ -42,7 +42,7 @@ jobs:
           cd destination
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
-          git add full_compilation.txt
+          git add .
           git commit -m "updated compilation"
-          git push origin master
+          git push -u origin master
     
