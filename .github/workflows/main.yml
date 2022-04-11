@@ -37,13 +37,6 @@ jobs:
       - name: Compile the contents of all files into one
         run: while read file; do cat "$file" >> compiled.txt; done < filelocations.txt
       
-      - name: Read the top filter file
-        id: compiled
-        uses: juliangruber/read-file-action@v1.1.4
-        with:
-         # File path
-          path: compiled.txt
-      
       - name: Print out compiled.txt
-        run: echo "${{ steps.compiled.outputs.content }}"
+        run: cat compiled.txt
       
