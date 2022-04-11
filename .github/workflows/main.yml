@@ -39,9 +39,10 @@ jobs:
       
       - name: Save changes
         run: |
+          cd destination
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
-          git add destination/full_compilation.txt
+          git add full_compilation.txt
           git commit -m "updated compilation"
           git push origin master
     
