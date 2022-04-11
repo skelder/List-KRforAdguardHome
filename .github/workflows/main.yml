@@ -35,7 +35,7 @@ jobs:
         run: grep -e 'include' original/filter.txt | sed -e 's/^.*include /original\//' > filelocations.txt
         
       - name: Compile the contents of all files into one
-        run: for file in filelocations.txt; do (cat "${file}"; echo) >> compiled.txt; done
+        run: while read file; do cat "$file" >> compiled.txt; done < filelocations.txt
       
       - name: Read the top filter file
         id: compiled
