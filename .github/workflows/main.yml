@@ -30,23 +30,19 @@ jobs:
         with: 
           repository: 'List-KR/List-KR'
           path: original
-      
-      - name: Read the top filter file
-        id: filter
-        uses: juliangruber/read-file-action@v1.1.4
-        with:
-         # File path
-          path: original/filter.txt
           
       - name: Process the list of files to access
-        run: grep -e 'include' original/filter.txt | sed -e 's/^.*include /original\//' > destination/compiled.txt
+        run: grep -e 'include' original/filter.txt | sed -e 's/^.*include /original\//' > filelocations.txt
+        
+      - name: Compile the contents of all files into one
+        run: for file in filelocations.txt; do (cat "${file}"; echo) >> compiled.txt; done
       
       - name: Read the top filter file
         id: compiled
         uses: juliangruber/read-file-action@v1.1.4
         with:
          # File path
-          path: destination/compiled.txt
+          path: compiled.txt
       
       - name: Print out compiled.txt
         run: echo "${{ steps.compiled.outputs.content }}"
