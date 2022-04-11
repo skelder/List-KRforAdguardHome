@@ -40,10 +40,9 @@ jobs:
       - name: Save changes
         run: |
           cd destination
-          git init
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
           git add .
           git commit -m "updated compilation"
-          git push -u origin master
+          git push -u origin main
     
